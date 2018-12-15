@@ -2,8 +2,8 @@
 all: main
 
 
-main : main.cpp
-	@g++ -o main -std=c++11 main.cpp 
+main : *.cpp
+	@g++ -o main -std=c++11 *.cpp 
 
 run : main
 	@echo "Running the program:"
