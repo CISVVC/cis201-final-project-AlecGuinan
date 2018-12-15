@@ -21,7 +21,9 @@ class Word
 	void resetcount();
 
 	void addloc(int l);
-	
+
+	void resetloc();
+
 	void setword(std::string n);
 
 	int rcount();

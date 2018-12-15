@@ -7,6 +7,8 @@ bool isnew(std::string word, std::vector <Word> v);
 void getfilename(std::string &name);
 int main()
 {
+	bool value;
+	Word* ptr = NULL;
 	Word n;
 	std::string filename;
 	getfilename(filename); 
@@ -30,15 +32,18 @@ int main()
 				n.setword(word);
 				n.addloc(line);
 				concordence.push_back(n);
+				n.resetloc();
 			}
 			if(!isnew(word, concordence))
 			{
-				for ( int i; i < concordence.size(); i++)
+				for(int i; i < concordence.size(); i++)
 				{
-					if( concordence[i].rword() == word)
+					concordence[i].print();
+					if(concordence[i].rword() == word)
 					{
-						concordence[i].addcount();
-					}	
+						concordence[i].addloc(line);
+					}
+				
 				}
 			}
 			word = "";
@@ -48,9 +53,9 @@ int main()
 			line ++;
 		}
 	}
-	for ( int i; i < concordence.size(); i++)
+	for ( int a; a < concordence.size(); a++)
 	{
-		concordence[i].print();
+		concordence[a].print();
 	}
 
 	return 0;

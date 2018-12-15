@@ -3,6 +3,8 @@
 
 Word::Word()
 {
+	std::vector<int> m_location;
+
 	m_counter = 1;
 	
 	m_name = "EMPTY";
@@ -22,6 +24,11 @@ void Word::resetcount()
 void Word::addloc( int l)
 {
 	m_location.push_back(l);
+}
+
+void Word::resetloc()
+{
+	m_location.clear();
 }
 
 void Word::setword( std::string n)
@@ -47,7 +54,7 @@ std::string Word::rword()
 void Word::print()
 {
 	std::cout << m_name << " : " <<  m_counter << " : "; 
-	for( int i; i < m_location.size(); i++)
+	for( int i = 0; i < m_location.size(); i++)
 	{
 		std::cout << m_location[i] << ", ";
 	}
