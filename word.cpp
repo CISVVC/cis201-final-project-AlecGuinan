@@ -48,7 +48,9 @@ std::vector <int> Word::rloc()
 
 std::string Word::rword()
 {
-	return m_name;
+	std::string name;
+	name = m_name;
+	return name;
 }
 
 void Word::print()

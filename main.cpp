@@ -3,61 +3,53 @@
 #include<vector>
 #include<fstream>
 #include"word.h"
+void printvec(std::vector <Word> v);
 bool isnew(std::string word, std::vector <Word> v);
 void getfilename(std::string &name);
 int main()
 {
-	bool value;
-	Word* ptr = NULL;
-	Word n;
-	std::string filename;
-	getfilename(filename); 
-	char ch;
+	Word b;
+	int a = 0;
 	int line = 1;
+	Word n;
+	std::vector< Word> concordence;
 	std::string word;
-	std::vector <Word> concordence;
+	char ch;
 	std::ifstream doc;
+	std::string filename;
+	
+	getfilename(filename);
 	doc.open(filename.c_str());
 	while(doc.get(ch))
 	{
 		ch = tolower(ch);
-		if ( isalpha(ch))
+		if( isalpha(ch))
 		{
-			word = word + ch; 
+			word = word + ch;
 		}
-		if ( !isalpha(ch) )
+		if (!isalpha(ch))
 		{
-			if ( isnew(word, concordence))
+			if(isnew(word, concordence))
 			{
 				n.setword(word);
 				n.addloc(line);
 				concordence.push_back(n);
 				n.resetloc();
 			}
-			if(!isnew(word, concordence))
+			else
 			{
-				for(int i; i < concordence.size(); i++)
+				for( int c; c < concordence.size(); c ++)
 				{
-					concordence[i].print();
-					if(concordence[i].rword() == word)
-					{
-						concordence[i].addloc(line);
-					}
-				
 				}
 			}
 			word = "";
 		}
-		if ( ch == '\n')
+		if(ch == '\n')
 		{
 			line ++;
 		}
 	}
-	for ( int a; a < concordence.size(); a++)
-	{
-		concordence[a].print();
-	}
-
+	printvec(concordence);
 	return 0;
 }
 
@@ -75,28 +67,6 @@ bool isnew(std::string word, std::vector <Word> v)
 	}
 	return value;
 }
-/*
-bool isnew(std::string word ,std::vector <Word> &v, int l)
-{
-	bool value; 
-	value = true;
-	std::vector<int> list;
-	for(int i; i < v.size(); i++)
-	{
-		if (v[i].rword() == word)
-		{
-			value =false;
-			v[i].addcount();
-			list = v[i].rloc();
-			if( list[list.size() - 1] != l)
-			{
-			 v[i].addloc(l);
-			}
-			break;
-		}
-	}
-		return value;
-}*/
 
 void getfilename(std::string &name)
 {
@@ -104,4 +74,12 @@ void getfilename(std::string &name)
 	std::cout <<"Please enter the file name: ";
 	std::cin >> file;
 	name = file;
+}
+
+void printvec(std::vector <Word> v)
+{
+	for (int i; i< v.size(); i++ )
+	{
+		v[i].print();
+	}
 }
