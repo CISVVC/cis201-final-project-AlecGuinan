@@ -15,6 +15,8 @@ class Word
 	public: 
 	
 	Word();
+	
+	int prevloc();
 
 	void addcount();
 	

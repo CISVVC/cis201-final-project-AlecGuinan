@@ -27,6 +27,10 @@ int main()
 		{
 			word = word + ch;
 		}
+		if(ch == '\n')
+		{
+			line ++;
+		}
 		if (!isalpha(ch))
 		{
 			if(isnew(word, concordence))
@@ -36,28 +40,23 @@ int main()
 				concordence.push_back(n);
 				n.resetloc();
 			}
-			if(!isnew(word, concordence))
+			else if(!isnew(word, concordence))
 			{
 				while ( a < concordence.size()) 
 				{	
 					if(concordence[a].rword() == word)
 					{
 						concordence[a].addcount();
-						std::cout << "loop" << std::endl;
-						std::cout << concordence[a].rword() << std::endl;
-						std::cout << word << std::endl;
-						std::cout << concordence[a].rcount() << std::endl;
-						concordence[a].addloc(line);
+						if(concordence[a].prevloc() != line)
+						{
+							concordence[a].addloc(line);
+						}
 					
 					}
 					a++;
 				}
-			}
+			}a =0;
 			word = "";
-		}
-		if(ch == '\n')
-		{
-			line ++;
 		}
 	}
 	printvec(concordence);

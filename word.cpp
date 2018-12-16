@@ -62,3 +62,8 @@ void Word::print()
 	}
 	std::cout << std::endl;
 }
+
+int Word::prevloc()
+{
+	return m_location[m_location.size() -1];
+}
