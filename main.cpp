@@ -36,10 +36,21 @@ int main()
 				concordence.push_back(n);
 				n.resetloc();
 			}
-			else
+			if(!isnew(word, concordence))
 			{
-				for( int c; c < concordence.size(); c ++)
-				{
+				while ( a < concordence.size()) 
+				{	
+					if(concordence[a].rword() == word)
+					{
+						concordence[a].addcount();
+						std::cout << "loop" << std::endl;
+						std::cout << concordence[a].rword() << std::endl;
+						std::cout << word << std::endl;
+						std::cout << concordence[a].rcount() << std::endl;
+						concordence[a].addloc(line);
+					
+					}
+					a++;
 				}
 			}
 			word = "";
