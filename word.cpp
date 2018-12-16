@@ -1,3 +1,9 @@
+/*
+Author: Alec Guinan
+Email: guinana@student.vvc.edu
+Purpose: This defines the functions in the Word class
+File: word.cpp
+*/
 #include<iostream>
 #include"word.h"
 
